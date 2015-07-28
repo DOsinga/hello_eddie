@@ -237,17 +237,18 @@ def process_query(hue, query, harmony_client, activity_map):
 
 def main():
   audio = pyaudio.PyAudio()
-  hue = phue.Bridge('172.17.172.105')
+  hue = phue.Bridge('172.17.172.101')
 
   token = harmony.auth.login('douwe.osinga@gmail.com', '1yD27amH1')
-  session_token = harmony.auth.swap_auth_token('172.17.172.101', 5222, token)
-  harmony_client = harmony.client.create_and_connect_client('172.17.172.101', 5222, session_token)
+  session_token = harmony.auth.swap_auth_token('172.17.172.100', 5222, token)
+  harmony_client = harmony.client.create_and_connect_client('172.17.172.100', 5222, session_token)
 
   config = harmony_client.get_config()
   activity_map = {act['label']: act['id'] for act in config['activity']}
 
   while True:
-    triggered = listen_for_trigger(audio, 'Eddie')
+    #triggered = listen_for_trigger(audio, 'Eddie')
+    triggered = True
     if triggered:
       say('What can I do for you?')
       wit.init()

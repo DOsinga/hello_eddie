@@ -1,0 +1,7 @@
+feedparser
+pyaudio
+requests
+phue
+wit
+sleekxmpp
+soco
